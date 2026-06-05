@@ -103,6 +103,19 @@ In this project, both GNSS and LiDAR are modeled as direct noisy observations of
 
 The GNSS and LiDAR covariances define how much trust is placed in each sensor during the correction step of the ES-EKF.
 
+<table>
+  <tr>
+    <td align="center">
+      <img src="GNSS.png" width="100%"/><br>
+      <sub><b></b> Global Navigation Satellite System (GNSS)</sub>
+    </td>
+    <td align="center">
+      <img src="LIDAR.png" width="100%"/><br>
+      <sub><b></b> Light Detection and Ranging (LIDAR)</sub>
+    </td>
+  </tr>
+</table>
+
 *(E) EstimationLoop*
 
 The ES-EKF operates in a continuous loop, alternating between prediction using IMU data and correction using GNSS/LiDAR measurements.
