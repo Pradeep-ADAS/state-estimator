@@ -53,7 +53,7 @@ The key methods used in this rpoject include:
 
 🧠 **5. Key Concepts & Implementation**
 
-*Need for multiple sensors* <br>
+*(A) Need for multiple sensors* <br>
 Autonomous vehicles rely on multiple sensors because no single sensor is reliable enough to provide accurate and continuous localization under all driving conditions. Each sensor has complementary strengths and weaknesses, making sensor fusion essential for robust state estimation. This motivates the use of sensor fusion techniques to combine complementary measurements into a single, consistent estimate of the vehicle state.
 <table>
   <tr>
@@ -65,7 +65,7 @@ Autonomous vehicles rely on multiple sensors because no single sensor is reliabl
 </table>
 
 
-*Kalman Filter and ES-EKF* <br>
+*(B) Kalman Filter and ES-EKF* <br>
 This project uses an Error-State Extended Kalman Filter (ES-EKF) to recursively estimate the vehicle’s state by combining a motion model with noisy sensor measurements. The filter operates in two steps: a prediction step driven by IMU data, and a correction step using GNSS and LiDAR observations.
 
 The ES-EKF formulation improves numerical stability by estimating small error states around a nominal trajectory, making it well-suited for highly non-linear vehicle dynamics and real-world sensor noise.
@@ -79,17 +79,58 @@ The ES-EKF formulation improves numerical stability by estimating small error st
   </tr>
 </table>
 
-*State Representation* <br>
-The system estimates the vehicle state as position, velocity, and orientation (quaternion) in 3D space. An error-state formulation is used in the EKF to model and correct small deviations around this nominal state.
+*(C) Motion Model - State Representation* <br>
+The system tracks the vehicle’s position, velocity, and orientation (using quaternions) in 3D space. Instead of directly estimating large changes in these values, the ES-EKF focuses on estimating small errors around a predicted motion, which are then used to continuously refine the state for better accuracy and stability.
+
+A more detailed derivation of the ES-EKF formulation is provided in the references section.
+
 <table>
   <tr>
     <td align="center">
-      <img src="Configure_Suspension_Settings.PNG" width="100%"/><br>
-      <sub><b>Vehicle & Rider Setup</b>: Set suspension and damping properties to match vehicle dynamics performance.</sub>
+      <img src="Motion_Model.png" width="100%"/><br>
+      <sub><b></b> Motion Model</sub>
     </td>
     <td align="center">
-      <img src="Configure_Road_and_Driver.PNG" width="100%"/><br>
-      <sub><b>Road & Environment Setup</b>: Configure road profiles, friction levels and driving conditions to match real world.</sub>
+      <img src="Error_Model.png" width="100%"/><br>
+      <sub><b></b> Error Model</sub>
     </td>
   </tr>
 </table>
+
+*(D) Position Observation (GNSS & LiDAR)* <br>
+
+In this project, both GNSS and LiDAR are modeled as direct noisy observations of the vehicle’s position in the inertial frame. Each measurement is assumed to be corrupted by additive Gaussian noise, characterized by a sensor-specific covariance.
+
+The GNSS and LiDAR covariances define how much trust is placed in each sensor during the correction step of the ES-EKF.
+
+*(E) EstimationLoop*
+
+The ES-EKF operates in a continuous loop, alternating between prediction using IMU data and correction using GNSS/LiDAR measurements.
+
+```mermaid
+flowchart TD
+
+A[IMU Measurement] --> B[Prediction Step]
+B --> C[State Propagation]
+C --> D[Covariance Propagation]
+
+D --> E{GNSS / LiDAR Available?}
+
+E -- No --> A
+
+E -- Yes --> F[Measurement Update]
+F --> G[Kalman Gain Computation]
+G --> H[State Correction]
+H --> I[Covariance Update]
+
+I --> A
+```
+
+NOTE: In the chart above, **State propagation** refers to the step where the vehicle state (position, velocity, and orientation) is predicted forward in time using the motion model and IMU measurements.  
+
+**Covariance propagation** is the step where the uncertainty of the predicted state is updated based on the motion model and process noise.
+
+***
+📈 **6. Simulation Results**
+
+
