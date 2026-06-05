@@ -53,6 +53,19 @@ The key methods used in this rpoject include:
 
 🧠 **5. Key Concepts**
 
-**Need for multiple sensors**  
-Autonomous vehicles rely on multiple sensors because no single sensor is reliable enough to provide accurate and continuous localization under all driving conditions. Each sensor has complementary strengths and weaknesses, making sensor fusion essential for robust state estimation.
+*Need for multiple sensors* <br>
+Autonomous vehicles rely on multiple sensors because no single sensor is reliable enough to provide accurate and continuous localization under all driving conditions. Each sensor has complementary strengths and weaknesses, making sensor fusion essential for robust state estimation. This motivates the use of sensor fusion techniques to combine complementary measurements into a single, consistent estimate of the vehicle state.
+<table>
+  <tr>
+    <td align="center">
+      <b>Sensor Stack </b><br>
+      <img src="Sensor_Stack.png" width="600"/>
+    </td>
+  </tr>
+</table>
 
+
+*Kalman Filter and ES-EKF* <br>
+This project uses an Error-State Extended Kalman Filter (ES-EKF) to recursively estimate the vehicle’s state by combining a motion model with noisy sensor measurements. The filter operates in two steps: a prediction step driven by IMU data, and a correction step using GNSS and LiDAR observations.
+
+The ES-EKF formulation improves numerical stability by estimating small error states around a nominal trajectory, making it well-suited for highly non-linear vehicle dynamics and real-world sensor noise.
