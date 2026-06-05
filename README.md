@@ -146,6 +146,53 @@ NOTE: In the chart above, **State propagation** refers to the step where the veh
 ---
 📈 **6. Simulation Results**
 
+**Case 1: Ideal working of sensors**
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="Part1_Tracking.png" width="100%"/><br>
+      <sub><b></b> Estimated Trajectory compared with ground truth</sub>
+    </td>
+    <td align="center">
+      <img src="Part1_Error.png" width="100%"/><br>
+      <sub><b></b> (Red Threshold - 3 Std. Dev. from ground truth | Blue - Error in estiomation model)</sub>
+    </td>
+  </tr>
+</table>
+
+**Case 2: Poorly calibrated sensors**
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="Part2_Tracking.png" width="100%"/><br>
+      <sub><b></b> Estimated Trajectory compared with ground truth</sub>
+    </td>
+    <td align="center">
+      <img src="Part2_Error.png" width="100%"/><br>
+      <sub><b></b> (Red Threshold - 3 Std. Dev. from ground truth | Blue - Error in estiomation model)</sub>
+    </td>
+  </tr>
+</table>
+
+**Case 3: Drop in sensor Information (e.g. inside a tunnel)**
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="Part3_Tracking.png" width="100%"/><br>
+      <sub><b></b> Estimated Trajectory compared with ground truth</sub>
+    </td>
+    <td align="center">
+      <img src="Part3_Error.png" width="100%"/><br>
+      <sub><b></b> (Red Threshold - 3 Std. Dev. from ground truth | Blue - Error in estiomation model)</sub>
+    </td>
+  </tr>
+</table>
+
+Across all three scenarios, the developed estimator maintains stable performance with estimation errors remaining within acceptable uncertainty bounds.
+
 ---
 🧭 **7. Future Extensions**
 
