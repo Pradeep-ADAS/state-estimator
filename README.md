@@ -51,7 +51,7 @@ The key methods used in this rpoject include:
 
 ---
 
-🧠 **5. Key Concepts**
+🧠 **5. Key Concepts & Implementation**
 
 *Need for multiple sensors* <br>
 Autonomous vehicles rely on multiple sensors because no single sensor is reliable enough to provide accurate and continuous localization under all driving conditions. Each sensor has complementary strengths and weaknesses, making sensor fusion essential for robust state estimation. This motivates the use of sensor fusion techniques to combine complementary measurements into a single, consistent estimate of the vehicle state.
@@ -69,3 +69,27 @@ Autonomous vehicles rely on multiple sensors because no single sensor is reliabl
 This project uses an Error-State Extended Kalman Filter (ES-EKF) to recursively estimate the vehicle’s state by combining a motion model with noisy sensor measurements. The filter operates in two steps: a prediction step driven by IMU data, and a correction step using GNSS and LiDAR observations.
 
 The ES-EKF formulation improves numerical stability by estimating small error states around a nominal trajectory, making it well-suited for highly non-linear vehicle dynamics and real-world sensor noise.
+
+<table>
+  <tr>
+    <td align="center">
+      <b>Estimation Workflow Setup</b><br>
+      <img src="Kalman_Filter.png" width="600"/>
+    </td>
+  </tr>
+</table>
+
+*State Representation* <br>
+The system estimates the vehicle state as position, velocity, and orientation (quaternion) in 3D space. An error-state formulation is used in the EKF to model and correct small deviations around this nominal state.
+<table>
+  <tr>
+    <td align="center">
+      <img src="Configure_Suspension_Settings.PNG" width="100%"/><br>
+      <sub><b>Vehicle & Rider Setup</b>: Set suspension and damping properties to match vehicle dynamics performance.</sub>
+    </td>
+    <td align="center">
+      <img src="Configure_Road_and_Driver.PNG" width="100%"/><br>
+      <sub><b>Road & Environment Setup</b>: Configure road profiles, friction levels and driving conditions to match real world.</sub>
+    </td>
+  </tr>
+</table>
