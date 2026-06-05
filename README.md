@@ -143,7 +143,35 @@ NOTE: In the chart above, **State propagation** refers to the step where the veh
 
 **Covariance propagation** is the step where the uncertainty of the predicted state is updated based on the motion model and process noise.
 
-***
+---
 📈 **6. Simulation Results**
 
+---
+🧭 **7. Future Extensions**
 
+Potential next-stage improvements for this project include:
+
+- Testing and validation on additional datasets or longer trajectories to evaluate long-term drift and stability
+- Improved sensor fusion by tuning noise parameters (IMU, GNSS, LiDAR) based on driving conditions or data quality  
+---
+
+⚠️ **8. Data Note**
+
+This project was developed as part of the Self-Driving Cars Specialization from the University of Toronto and serves as a demonstration of multi-sensor state estimation using ES-EKF.
+
+It is built using open-source tools and publicly available datasets for GNSS, IMU, and LiDAR-based localization.
+
+No proprietary or sensitive data is included in this repository.
+
+---
+
+👨‍💻 9. **Skills Demonstrated**
+
+This project demonstrates the end-to-end implementation of a multi-sensor state estimation system for autonomous vehicle localization using ES-EKF.
+
+Through this project, I showcase the following skills
+
+- Design and implementation of a real-time sensor fusion pipeline for vehicle state estimation  
+- Application of Error-State Extended Kalman Filter (ES-EKF) for position, velocity, and orientation tracking  
+- Integration of GNSS, IMU, and LiDAR data with coordinate frame alignment  
+- Modeling of sensor noise and uncertainty through covariance-based filtering  
