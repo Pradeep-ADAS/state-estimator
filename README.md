@@ -4,6 +4,15 @@ This project focuses on the implementation of a state estimation system for auto
 
 To achieve robust localization, the system integrates data from GNSS, IMU, and LiDAR sensors. Each sensor contributes complementary information: GNSS provides global position measurements, IMU delivers high-frequency inertial data, and LiDAR aids in correcting drift and improving spatial awareness through environmental observations.
 
+<table>
+  <tr>
+    <td align="center">
+      <b></b><br>
+      <img src="Intro_GIF.gif" width="700"/>
+    </td>
+  </tr>
+</table>
+
 ---
 
 🧩 **2. Challenge**
@@ -18,4 +27,32 @@ Key challenges include:
 - Accuracy constraints for safe autonomous driving, where even small localization errors can affect lane-level positioning and decision-making.  
 
 ---
+
+🎯 **3. Objectives**
+
+- Develop a multi-sensor state estimation framework to accurately estimate vehicle pose and velocity in real time  
+- Design an Error-State EKF to fuse high-frequency IMU data with GNSS and LiDAR measurements  
+- Improve localization robustness by handling sensor noise, failures, and asynchronous measurement updates  
+- Evaluate estimator performance through trajectory reconstruction and comparison against ground truth data
+
+---
+
+🛠 **4. Tech Stack**
+
+The key methods used in this rpoject include:
+
+- CARLA Simulator – autonomous driving simulation environment
+- Python – core implementation of the ES-EKF sensor fusion pipeline  
+- NumPy – numerical computations for state propagation, covariance updates, and linear algebra  
+- Matplotlib – visualization of trajectories, estimation error, and uncertainty bounds  
+- GNSS / IMU / LiDAR data – multi-sensor inputs for real-world vehicle localization  
+- Quaternion-based math utilities – orientation representation and update operations  
+- Kalman Filter framework (ES-EKF) – probabilistic state estimation and sensor fusion method
+
+---
+
+🧠 **5. Key Concepts**
+
+**Need for multiple sensors**  
+Autonomous vehicles rely on multiple sensors because no single sensor is reliable enough to provide accurate and continuous localization under all driving conditions. Each sensor has complementary strengths and weaknesses, making sensor fusion essential for robust state estimation.
 
